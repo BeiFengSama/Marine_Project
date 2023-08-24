@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/static/css/login.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="/static/js/cookie_util.js"></script>
+</head>
+<body>
+<h2>Marine Environment Data</h2>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form>
+			<h1>Create Account</h1>
+			<div>
+			</div>
+			<span></span>
+			<input type="text" name="RegisterNickName" placeholder="NickName" />
+			<input type="text" name="RegisterUserName" placeholder="UserName" />
+			<input type="password" name="RegisterPassword" placeholder="Password" />
+			<button id="register">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form>
+			<h1>Sign in</h1>
+			<div>
+			</div>
+			<span></span>
+			<input type="text" name="LoginUserName" placeholder="UserName" />
+			<input type="password" name="LoginPassword" placeholder="Password" />
+			<a href="#">Forgot your password?</a>
+			<button id="login">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/static/js/login.js"></script>
+</body>
+</html>

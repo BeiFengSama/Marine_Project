@@ -1,0 +1,48 @@
+var data = {
+    month:'03',
+    day:'01'
+};
+var date=[];
+for(var i = 0;i<24;i++){
+    date.push(i);
+}
+var atm = [];
+$.ajax({
+            url: 'test/',
+            type: 'POST',
+            data: data,
+            success: function(response) {
+                if(response.status == 'success'){
+                    for(var i=0;i<response.data.length;i++){
+                      atm.push(response.data[i])
+                    }
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main'));
+
+                    // 指定图表的配置项和数据
+                    var option = {
+                      xAxis: {
+                        type: 'category',
+                        data: date
+                      },
+                      yAxis: {
+                        type: 'value'
+                      },
+                      series: [
+                        {
+                          data: atm,
+                          type: 'line'
+                        }
+                      ]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                }
+                else{
+                    console.log(response.message)
+                }
+            },
+            error: function() {
+
+            }
+        });
