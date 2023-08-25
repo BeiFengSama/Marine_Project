@@ -2,7 +2,8 @@ from django.urls import path, include
 from . import views
 from django.views import static
 from django.conf import settings
-from django.conf.urls import url
+from django.urls import re_path as url
+
 
 urlpatterns = [
     path('', views.home_view),
