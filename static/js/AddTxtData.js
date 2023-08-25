@@ -1,9 +1,4 @@
 $(document).ready(function () {
-    //检查cookie是否存在
-    var cookie = getCookie("uid");
-	if(cookie==''){
-		window.location.href = 'quit';
-	}
 
     //数据上传
     var fileInput = document.getElementById('fileInput');
