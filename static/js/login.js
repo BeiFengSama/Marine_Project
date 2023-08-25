@@ -35,7 +35,7 @@ $(document).ready(function () {
             data: data,
             success: function(response) {
                 if(response.status == 'success'){
-                    swal("Welcome Back!", "welcome visit our website", "success").then(() => {window.location.href = 'home/';});
+                    swal("Welcome Back!", "welcome visit our website"+response.user_id, "success").then(() => {window.location.href = 'home/';});
                     setCookie("uid", response.user_id, 7);
                 }
                 if(response.status == 'failure'){
