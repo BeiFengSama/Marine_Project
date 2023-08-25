@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>可视化</title>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>选择数据收集点</option>
+      <option value="1" id="xmd">小麦岛</option>
+      <option value="2" id="zfd">芝罘岛</option>
+      <option value="3" id="bsg">北礵岛</option>
+      <option value="4" id="dcn">大陈岛</option>
+      <option value="5" id="zlg">东山岛</option>
+    </select>
     <div id="main" style="width: 1000px;height:800px;"></div>
-<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script src="/static/js/echarts.js"></script>
 </body>
 </html>
