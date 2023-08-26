@@ -55,31 +55,39 @@ $(document).ready(function () {
         var usernickname = $('input[name="RegisterNickName"]').val();
         var username = $('input[name="RegisterUserName"]').val();
         var password = $('input[name="RegisterPassword"]').val();
+        //判断用户名或密码是否为空
+        if(username.length == 0 || password.length == 0){
+            swal("Sign Up Failed!", "用户名或密码不能为空", "error")
+        }
+        else{
+            // 创建一个对象，包含要发送的数据
+            var data = {
+                RegisterNickName: usernickname,
+                RegisterUserName: username,
+                RegisterPassword: password
 
-        // 创建一个对象，包含要发送的数据
-        var data = {
-            RegisterNickName: usernickname,
-            RegisterUserName: username,
-            RegisterPassword: password
+            };
 
-        };
-
-        // 发送Ajax请求
-        $.ajax({
-            url: 'register/',
-            type: 'POST',
-            data: data,
-            success: function(response) {
-                if(response.status == 'success'){
-                    swal("Sign Up Successfully!", "try to visit our website", "success").then(() => {window.location.href = '';});
+            // 发送Ajax请求
+            $.ajax({
+                url: 'register/',
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    if(response.status == 'success'){
+                        swal("Sign Up Successfully!", "try to visit our website", "success").then(() => {window.location.href = '';});
+                    }
+                    if(response.status == 'failure'){
+                        swal("Sign Up Failed!", response.message, "error");
+                    }
+                },
+                error: function() {
+                    swal("request failed!", "ajax request failed!", "error");
                 }
-                if(response.status == 'failure'){
-                    swal("Sign Up Failed!", response.message, "error");
-                }
-            },
-            error: function() {
-                swal("request failed!", "ajax request failed!", "error");
-            }
-        });
+            });
+        }
+
     });
+
+
 });
