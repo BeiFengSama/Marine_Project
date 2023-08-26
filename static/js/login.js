@@ -60,6 +60,9 @@ $(document).ready(function () {
             swal("Sign Up Failed!", "用户名或密码不能为空", "error")
         }
         else{
+            console.log("nickname="+usernickname);
+            console.log("username="+username);
+            console.log("password="+password);
             // 创建一个对象，包含要发送的数据
             var data = {
                 RegisterNickName: usernickname,

@@ -35,8 +35,6 @@ def register(request):
         c = UserInfo.objects.filter(UserName=username).count()
         if c >= 1:
             return JsonResponse({'status': 'failure', 'message': '用户名已被占用'})
-        elif username is null or pwd is null:
-            return JsonResponse({'status': 'failure', 'message': '用户名或密码不能为空'})
         else:
             re_pwd = make_password(pwd)
             user = UserInfo(UserNickName=nickname, UserName=username, UserPassword=re_pwd)
