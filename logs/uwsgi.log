@@ -1,0 +1,21 @@
+*** Starting uWSGI 2.0.22 (64bit) on [Mon Aug 28 18:18:50 2023] ***
+compiled with version: 11.3.0 on 19 August 2023 12:29:16
+os: Linux-5.15.0-73-generic #80-Ubuntu SMP Mon May 15 15:18:26 UTC 2023
+nodename: iZbp14jov98byd4p4vz8g8Z
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /data/src/Marine_Project
+writing pidfile to /data/src/Marine_Project/uwsgi.pid
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /data/src/Marine_Project
+your processes number limit is 6509
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:3434).
+bind(): Address already in use [core/socket.c line 769]
