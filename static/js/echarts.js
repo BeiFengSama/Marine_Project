@@ -3,7 +3,15 @@ $(document).ready(function () {
     option.addEventListener('change', function(event) {
         var selectedValue = event.target.value;
         console.log(selectedValue);
+        var station = '';
+        if(selectedValue == 'xmd'){station = 'xmd';}
+        else if(selectedValue == 'zfd'){station = 'zfd';}
+        else if(selectedValue == 'bsg'){station = 'bsg';}
+        else if(selectedValue == 'dcn'){station = 'dcn';}
+        else if(selectedValue == 'zlg'){station = 'zlg';}
+        else{station = 'xmd';}
         var data = {
+        station:station,
         month:'03',
         day:'01'
         };

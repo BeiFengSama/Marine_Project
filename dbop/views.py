@@ -35,9 +35,21 @@ def echarts_view(request):
 @csrf_exempt
 def test(request):
     if request.method == 'POST':
+        station = request.POST.get('station')
         month = request.POST.get('month')
         day = request.POST.get('day')
-        data = list(XiaoMaiDao.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+        if station == 'xmd':
+            data = list(XiaoMaiDao.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+        elif station == 'zfd':
+            data = list(ZhiFuDao.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+        elif station == 'bsg':
+            data = list(BeiShuang.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+        elif station == 'dcn':
+            data = list(DaChen.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+        elif station == 'zlg':
+            data = list(DongShan.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+        else:
+            data = []
         atm = []
         for i in data:
             atm.append(float(i[0]))
