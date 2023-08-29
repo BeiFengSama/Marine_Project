@@ -35,8 +35,8 @@ $(document).ready(function () {
             data: data,
             success: function(response) {
                 if(response.status == 'success'){
+                    document.cookie = 'uid='+response.user_id+'; max-age=36000;';
                     swal("Welcome Back!", "welcome visit our website", "success").then(() => {window.location.href = 'home/';});
-                    setCookie("uid", response.user_id, 7);
                 }
                 if(response.status == 'failure'){
                     swal("Account Failed!", "Your account did not match!", "error");
