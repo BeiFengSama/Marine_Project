@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 from django.views import static
 from django.conf import settings
@@ -10,8 +10,8 @@ urlpatterns = [
     path('edit/', views.edit_view, name='edit'),
     path('echarts/', views.echarts_view, name='echarts'),
     path('edit/AddTxtData/', views.txt_data),
-    path('quit/', views.quit_view),
     path('echarts/test/', views.test),
+    re_path('quit/', views.quit_view),
     # 以下是新增
     url(r'^static/(?P<path>.*)$', static.serve,
         {'document_root': settings.STATIC_ROOT}, name='static'),
