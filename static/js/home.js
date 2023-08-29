@@ -1,8 +1,8 @@
 $(document).ready(function () {
-//    var uid = getCookie("uid");
-//    if(uid == ''){
-//        window.location.href = 'quit/';
-//    }
+    var uid = getCookie("uid");
+    if(uid == ''){
+        window.location.href = 'quit/';
+    }
 
     $('#quit').click(function(event) {
         document.cookie = 'uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
