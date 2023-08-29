@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    var uid = getCookie("uid");
-    if(uid == ''){
-        window.location.href = 'quit/';
-    }
+//    var uid = getCookie("uid");
+//    if(uid == ''){
+//        window.location.href = 'quit/';
+//    }
 
     $('#quit').click(function(event) {
         deleteCookie("uid");
