@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from numpy import double
 
 from .models import XiaoMaiDao
@@ -19,7 +20,8 @@ def home_view(request):
 
 @csrf_exempt
 def quit_view(request):
-    return redirect('login')
+    url = reverse('log:log')
+    return HttpResponseRedirect(url)
 
 
 @csrf_exempt
@@ -221,7 +223,8 @@ def txt_data(request):
             elif name == 'ZFD':
                 datainfo = ZhiFuDao(Station=station, Year=year_num, Month=month_num, Day=Date, Hour=Time, Lat=Lat,
                                     Long=Long,
-                                    Visibility=Visibility, Air_Temperature=Air_temperature, Wind_direction=Wind_direction,
+                                    Visibility=Visibility, Air_Temperature=Air_temperature,
+                                    Wind_direction=Wind_direction,
                                     Wind_speed=Wind_speed, Atmospheric_Pressure=Air_pressure,
                                     During_Past_6_hours_Precipitation=During_Past_6_hours_Precipitation,
                                     Sea_Temperature=Sea_temperature, Wind_Wave_Height=Wind_Wave_Height,
@@ -252,7 +255,8 @@ def txt_data(request):
             else:
                 datainfo = DongShan(Station=station, Year=year_num, Month=month_num, Day=Date, Hour=Time, Lat=Lat,
                                     Long=Long,
-                                    Visibility=Visibility, Air_Temperature=Air_temperature, Wind_direction=Wind_direction,
+                                    Visibility=Visibility, Air_Temperature=Air_temperature,
+                                    Wind_direction=Wind_direction,
                                     Wind_speed=Wind_speed, Atmospheric_Pressure=Air_pressure,
                                     During_Past_6_hours_Precipitation=During_Past_6_hours_Precipitation,
                                     Sea_Temperature=Sea_temperature, Wind_Wave_Height=Wind_Wave_Height,

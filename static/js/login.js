@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var uid = getCookie("uid")
+    var uid = getCookie("uid");
     if(uid != ''){
         window.location.href = 'home/';
     }

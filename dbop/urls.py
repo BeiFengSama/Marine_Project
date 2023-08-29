@@ -4,11 +4,11 @@ from django.views import static
 from django.conf import settings
 from django.urls import re_path as url
 
-
+app_name = 'home'
 urlpatterns = [
-    path('', views.home_view),
-    path('edit/', views.edit_view),
-    path('echarts/', views.echarts_view),
+    path('', views.home_view, name='main'),
+    path('edit/', views.edit_view, name='edit'),
+    path('echarts/', views.echarts_view, name='echarts'),
     path('edit/AddTxtData/', views.txt_data),
     path('quit/', views.quit_view),
     path('echarts/test/', views.test),

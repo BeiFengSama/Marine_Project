@@ -5,9 +5,9 @@ from django.views import static
 from django.conf import settings
 from django.urls import re_path as url
 
-
+app_name = 'log'
 urlpatterns = [
-    path('', views.login_view, name="login"),
+    path('', views.login_view, name="log"),
     path('login/', views.login),
     path('register/', views.register),
     path('home/', include('dbop.urls')),

@@ -24,7 +24,8 @@ from django.urls import re_path as url
 import LoginApp
 
 urlpatterns = [
-    path('', include('LoginApp.urls')),
+    path('', include('LoginApp.urls', namespace='log')),
+    path('home/', include('dbop.urls', namespace='home')),
     # 以下是新增
     url(r'^static/(?P<path>.*)$', static.serve,
         {'document_root': settings.STATIC_ROOT}, name='static'),
