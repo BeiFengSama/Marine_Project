@@ -10,7 +10,7 @@ urlpatterns = [
     path('edit/', views.edit_view, name='edit'),
     path('echarts/', views.echarts_view, name='echarts'),
     path('edit/AddTxtData/', views.txt_data),
-    path('echarts/test/', views.test),
+    path('echarts/station/', views.select_station),
     re_path('quit/', views.quit_view),
     # 以下是新增
     url(r'^static/(?P<path>.*)$', static.serve,

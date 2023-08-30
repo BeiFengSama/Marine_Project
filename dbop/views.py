@@ -35,28 +35,26 @@ def echarts_view(request):
 
 
 @csrf_exempt
-def test(request):
+def select_station(request):
     if request.method == 'POST':
         station = request.POST.get('station')
-        month = request.POST.get('month')
-        day = request.POST.get('day')
+        year = []
         if station == 'xmd':
-            data = list(XiaoMaiDao.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+            data = list(XiaoMaiDao.objects.values('Year').distinct())
         elif station == 'zfd':
-            data = list(ZhiFuDao.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+            data = list(ZhiFuDao.objects.values('Year').distinct())
         elif station == 'bsg':
-            data = list(BeiShuang.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+            data = list(BeiShuang.objects.values('Year').distinct())
         elif station == 'dcn':
-            data = list(DaChen.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+            data = list(DaChen.objects.values('Year').distinct())
         elif station == 'zlg':
-            data = list(DongShan.objects.filter(Month=month, Day=day).values_list('Atmospheric_Pressure'))
+            data = list(DongShan.objects.values('Year').distinct())
         else:
             data = []
-        atm = []
         for i in data:
-            atm.append(float(i[0]))
-        print(atm)
-        return JsonResponse({'status': 'success', 'data': atm})
+            year.append(float(i[0]))
+        print(year)
+        return JsonResponse({'status': 'success', 'data': year})
     return JsonResponse({'status': 'false', 'message': '数据获取失败'})
 
 

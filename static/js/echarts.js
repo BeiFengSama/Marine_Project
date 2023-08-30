@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    var option = document.getElementById("select");
+    var option = document.getElementById("station_select");
     option.addEventListener('change', function(event) {
         var selectedValue = event.target.value;
-        var station = '';
+        var station = 'xmd';
         if(selectedValue == 'xmd'){console.log(selectedValue);station = 'xmd';}
         else if(selectedValue == 'zfd'){console.log(selectedValue);station = 'zfd';}
         else if(selectedValue == 'bsg'){console.log(selectedValue);station = 'bsg';}
@@ -10,45 +10,15 @@ $(document).ready(function () {
         else if(selectedValue == 'zlg'){console.log(selectedValue);station = 'zlg';}
         else{station = 'xmd';}
         var data = {
-        station:station,
-        month:'03',
-        day:'01'
+            station:station
         };
-        var date=[];
-        for(var i = 0;i<24;i++){
-            date.push(i);
-        }
-        var atm = [];
         $.ajax({
-                    url: 'test/',
+                    url: 'station/',
                     type: 'POST',
                     data: data,
                     success: function(response) {
                         if(response.status == 'success'){
-                            for(var i=0;i<response.data.length;i++){
-                              atm.push(response.data[i])
-                            }
-                            // 基于准备好的dom，初始化echarts实例
-                            var myChart = echarts.init(document.getElementById('main'));
-
-                            // 指定图表的配置项和数据
-                            var option = {
-                              xAxis: {
-                                type: 'category',
-                                data: date
-                              },
-                              yAxis: {
-                                type: 'value'
-                              },
-                              series: [
-                                {
-                                  data: atm,
-                                  type: 'line'
-                                }
-                              ]
-                            };
-                            // 使用刚指定的配置项和数据显示图表。
-                            myChart.setOption(option);
+                            console.log(response.data);
                         }
                         else{
                             console.log(response.message)
