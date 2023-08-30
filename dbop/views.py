@@ -1,3 +1,5 @@
+from django.core import serializers
+from django.core.serializers import json
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -35,13 +37,43 @@ def echarts_view(request):
 
 
 @csrf_exempt
+def get_date_data(request):
+    if request.method == 'POST':
+        station = request.POST.get('station')
+        year = request.POST.get('year')
+        month = request.POST.get('month')
+        date = request.POST.get('date')
+        if len(month) < 2:
+            month = '0' + month
+        if len(date) < 2:
+            date = '0' + date
+        if station == 'xmd':
+            data = list(XiaoMaiDao.objects.filter(Year=year, Month=month, Day=date))
+        elif station == 'zfd':
+            data = list(ZhiFuDao.objects.filter(Year=year, Month=month, Day=date))
+        elif station == 'bsg':
+            data = list(BeiShuang.objects.filter(Year=year, Month=month, Day=date))
+        elif station == 'dcn':
+            data = list(DaChen.objects.filter(Year=year, Month=month, Day=date))
+        elif station == 'zlg':
+            data = list(DongShan.objects.filter(Year=year, Month=month, Day=date))
+        else:
+            data = []
+        for i in data:
+            Lat = i.Lat
+            # i.(模型具体项)
+        return JsonResponse({'status': 'success', 'data': data})
+    return JsonResponse({'status': 'false', 'message': '数据获取失败'})
+
+
+@csrf_exempt
 def select_month(request):
     if request.method == 'POST':
         station = request.POST.get('station')
         year = request.POST.get('year')
         month = request.POST.get('month')
         if len(month) < 2:
-            month = '0'+month
+            month = '0' + month
         date = []
         if station == 'xmd':
             data = list(XiaoMaiDao.objects.filter(Year=year, Month=month).values('Day').distinct())
@@ -55,8 +87,6 @@ def select_month(request):
             data = list(DongShan.objects.filter(Year=year, Month=month).values('Day').distinct())
         else:
             data = []
-        print("test")
-        print(data)
         for i in data:
             date.append(float(i['Day']))
         new_date = sorted(date)

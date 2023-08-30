@@ -13,6 +13,7 @@ urlpatterns = [
     path('echarts/station/', views.select_station),
     path('echarts/year/', views.select_year),
     path('echarts/month/', views.select_month),
+    path('echarts/get_date_data/', views.get_date_data),
     re_path('quit/', views.quit_view),
     # 以下是新增
     url(r'^static/(?P<path>.*)$', static.serve,

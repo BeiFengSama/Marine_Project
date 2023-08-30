@@ -123,6 +123,30 @@ $(document).ready(function () {
     });
     var submit_btn = document.getElementById("submit");
     submit_btn.addEventListener('click', function(event) {
+        var data={
+            station:selectedStation,
+            year:selectedYear,
+            month:selectedMonth,
+            date:selectedDate
+        };
+        console.log(data)
+        $.ajax({
+                    url: 'get_date_data/',
+                    type: 'POST',
+                    data: data,
+                    success: function(response) {
+                        if(response.status == 'success'){
+                            for(var da=0;da<response.data.length;da++){
+                                console.log(response.data[da]['Day']);
+                            }
+                        }
+                        else{
+                            console.log(response.message)
+                        }
+                    },
+                    error: function() {
 
+                    }
+            });
     });
 });
