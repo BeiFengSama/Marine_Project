@@ -40,6 +40,8 @@ def select_month(request):
         station = request.POST.get('station')
         year = request.POST.get('year')
         month = request.POST.get('month')
+        if len(month) < 2:
+            month = '0'+month
         date = []
         if station == 'xmd':
             data = list(XiaoMaiDao.objects.filter(Year=year, Month=month).values('Day').distinct())
