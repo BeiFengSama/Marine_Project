@@ -59,8 +59,8 @@ def select_month(request):
         print(data)
         for i in data:
             date.append(float(i['Day']))
-        print(date)
-        return JsonResponse({'status': 'success', 'data': date})
+        new_date = sorted(date)
+        return JsonResponse({'status': 'success', 'data': new_date})
     return JsonResponse({'status': 'false', 'message': '数据获取失败'})
 
 
@@ -84,8 +84,8 @@ def select_year(request):
             data = []
         for i in data:
             month.append(float(i['Month']))
-        print(month)
-        return JsonResponse({'status': 'success', 'data': month})
+        new_month = sorted(month)
+        return JsonResponse({'status': 'success', 'data': new_month})
     return JsonResponse({'status': 'false', 'message': '数据获取失败'})
 
 
@@ -108,8 +108,8 @@ def select_station(request):
             data = []
         for i in data:
             year.append(float(i['Year']))
-        print(year)
-        return JsonResponse({'status': 'success', 'data': year})
+        new_year = sorted(year)
+        return JsonResponse({'status': 'success', 'data': new_year})
     return JsonResponse({'status': 'false', 'message': '数据获取失败'})
 
 
