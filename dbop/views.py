@@ -35,6 +35,59 @@ def echarts_view(request):
 
 
 @csrf_exempt
+def select_month(request):
+    if request.method == 'POST':
+        station = request.POST.get('station')
+        year = request.POST.get('year')
+        month = request.POST.get('month')
+        date = []
+        if station == 'xmd':
+            data = list(XiaoMaiDao.objects.filter(Year=year, Month=month).values('Day').distinct())
+        elif station == 'zfd':
+            data = list(ZhiFuDao.objects.filter(Year=year, Month=month).values('Day').distinct())
+        elif station == 'bsg':
+            data = list(BeiShuang.objects.filter(Year=year, Month=month).values('Day').distinct())
+        elif station == 'dcn':
+            data = list(DaChen.objects.filter(Year=year, Month=month).values('Day').distinct())
+        elif station == 'zlg':
+            data = list(DongShan.objects.filter(Year=year, Month=month).values('Day').distinct())
+        else:
+            data = []
+        print("test")
+        print(data)
+        for i in data:
+            date.append(float(i['Day']))
+        print(date)
+        return JsonResponse({'status': 'success', 'data': date})
+    return JsonResponse({'status': 'false', 'message': '数据获取失败'})
+
+
+@csrf_exempt
+def select_year(request):
+    if request.method == 'POST':
+        station = request.POST.get('station')
+        year = request.POST.get('year')
+        month = []
+        if station == 'xmd':
+            data = list(XiaoMaiDao.objects.filter(Year=year).values('Month').distinct())
+        elif station == 'zfd':
+            data = list(ZhiFuDao.objects.filter(Year=year).values('Month').distinct())
+        elif station == 'bsg':
+            data = list(BeiShuang.objects.filter(Year=year).values('Month').distinct())
+        elif station == 'dcn':
+            data = list(DaChen.objects.filter(Year=year).values('Month').distinct())
+        elif station == 'zlg':
+            data = list(DongShan.objects.filter(Year=year).values('Month').distinct())
+        else:
+            data = []
+        for i in data:
+            month.append(float(i['Month']))
+        print(month)
+        return JsonResponse({'status': 'success', 'data': month})
+    return JsonResponse({'status': 'false', 'message': '数据获取失败'})
+
+
+@csrf_exempt
 def select_station(request):
     if request.method == 'POST':
         station = request.POST.get('station')
@@ -52,7 +105,7 @@ def select_station(request):
         else:
             data = []
         for i in data:
-            year.append(float(i[0]))
+            year.append(float(i['Year']))
         print(year)
         return JsonResponse({'status': 'success', 'data': year})
     return JsonResponse({'status': 'false', 'message': '数据获取失败'})
