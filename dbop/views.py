@@ -1,5 +1,4 @@
-from django.core import serializers
-from django.core.serializers import json
+import json
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -47,22 +46,24 @@ def get_date_data(request):
             month = '0' + month
         if len(date) < 2:
             date = '0' + date
+        print(station+year+month+date)
         if station == 'xmd':
-            data = list(XiaoMaiDao.objects.filter(Year=year, Month=month, Day=date))
+            data = list(XiaoMaiDao.objects.filter(Year=year, Month=month, Day=date).values())
+            return JsonResponse({'status': 'success', 'data': data})
         elif station == 'zfd':
-            data = list(ZhiFuDao.objects.filter(Year=year, Month=month, Day=date))
+            data = list(ZhiFuDao.objects.filter(Year=year, Month=month, Day=date).values())
+            return JsonResponse({'status': 'success', 'data': data})
         elif station == 'bsg':
-            data = list(BeiShuang.objects.filter(Year=year, Month=month, Day=date))
+            data = list(BeiShuang.objects.filter(Year=year, Month=month, Day=date).values())
+            return JsonResponse({'status': 'success', 'data': data})
         elif station == 'dcn':
-            data = list(DaChen.objects.filter(Year=year, Month=month, Day=date))
+            data = list(DaChen.objects.filter(Year=year, Month=month, Day=date).values())
+            return JsonResponse({'status': 'success', 'data': data})
         elif station == 'zlg':
-            data = list(DongShan.objects.filter(Year=year, Month=month, Day=date))
+            data = list(DongShan.objects.filter(Year=year, Month=month, Day=date).values())
+            return JsonResponse({'status': 'success', 'data': data})
         else:
-            data = []
-        for i in data:
-            Lat = i.Lat
-            # i.(模型具体项)
-        return JsonResponse({'status': 'success', 'data': data})
+            return JsonResponse({'status': 'false', 'message': '无查询结果'})
     return JsonResponse({'status': 'false', 'message': '数据获取失败'})
 
 
