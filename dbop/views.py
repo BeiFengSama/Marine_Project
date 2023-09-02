@@ -59,7 +59,7 @@ def get_date_data(request):
         elif station == 'dcn':
             data = list(DaChen.objects.filter(Year=year, Month=month, Day=date).values())
             return JsonResponse({'status': 'success', 'data': data})
-        elif station == 'zlg':
+        elif station == 'dsn':
             data = list(DongShan.objects.filter(Year=year, Month=month, Day=date).values())
             return JsonResponse({'status': 'success', 'data': data})
         else:
@@ -84,7 +84,7 @@ def select_month(request):
             data = list(BeiShuang.objects.filter(Year=year, Month=month).values('Day').distinct())
         elif station == 'dcn':
             data = list(DaChen.objects.filter(Year=year, Month=month).values('Day').distinct())
-        elif station == 'zlg':
+        elif station == 'dsn':
             data = list(DongShan.objects.filter(Year=year, Month=month).values('Day').distinct())
         else:
             data = []
@@ -109,7 +109,7 @@ def select_year(request):
             data = list(BeiShuang.objects.filter(Year=year).values('Month').distinct())
         elif station == 'dcn':
             data = list(DaChen.objects.filter(Year=year).values('Month').distinct())
-        elif station == 'zlg':
+        elif station == 'dsn':
             data = list(DongShan.objects.filter(Year=year).values('Month').distinct())
         else:
             data = []
@@ -133,7 +133,7 @@ def select_station(request):
             data = list(BeiShuang.objects.values('Year').distinct())
         elif station == 'dcn':
             data = list(DaChen.objects.values('Year').distinct())
-        elif station == 'zlg':
+        elif station == 'dsn':
             data = list(DongShan.objects.values('Year').distinct())
         else:
             data = []
@@ -184,7 +184,7 @@ def txt_data(request):
             c = DaChen.objects.filter(filename=filename).count()
             if c >= 1:
                 return JsonResponse({'status': 'failure', 'message': '大陈岛数据重复上传'})
-        elif name == 'ZLG':
+        elif name == 'DSN':
             ret_name = '东山岛'
             c = DongShan.objects.filter(filename=filename).count()
             if c >= 1:
