@@ -46,24 +46,20 @@ def get_date_data(request):
             month = '0' + month
         if len(date) < 2:
             date = '0' + date
-        print(station+year+month+date)
-        if station == 'xmd':
-            data = list(XiaoMaiDao.objects.filter(Year=year, Month=month, Day=date).values())
-            return JsonResponse({'status': 'success', 'data': data})
-        elif station == 'zfd':
-            data = list(ZhiFuDao.objects.filter(Year=year, Month=month, Day=date).values())
-            return JsonResponse({'status': 'success', 'data': data})
-        elif station == 'bsg':
-            data = list(BeiShuang.objects.filter(Year=year, Month=month, Day=date).values())
-            return JsonResponse({'status': 'success', 'data': data})
-        elif station == 'dcn':
-            data = list(DaChen.objects.filter(Year=year, Month=month, Day=date).values())
-            return JsonResponse({'status': 'success', 'data': data})
-        elif station == 'dsn':
-            data = list(DongShan.objects.filter(Year=year, Month=month, Day=date).values())
-            return JsonResponse({'status': 'success', 'data': data})
-        else:
-            return JsonResponse({'status': 'false', 'message': '无查询结果'})
+        print(station + year + month + date)
+        xmd_data = list(XiaoMaiDao.objects.filter(Year=year, Month=month, Day=date).values())
+        zfd_data = list(ZhiFuDao.objects.filter(Year=year, Month=month, Day=date).values())
+        bsg_data = list(BeiShuang.objects.filter(Year=year, Month=month, Day=date).values())
+        dcn_data = list(DaChen.objects.filter(Year=year, Month=month, Day=date).values())
+        dsn_data = list(DongShan.objects.filter(Year=year, Month=month, Day=date).values())
+        data = {
+            'xmd': xmd_data,
+            'zfd': zfd_data,
+            'bsg': bsg_data,
+            'dcn': dcn_data,
+            'dsn': dsn_data
+        }
+        return JsonResponse({'status': 'success', 'data': data})
     return JsonResponse({'status': 'false', 'message': '数据获取失败'})
 
 

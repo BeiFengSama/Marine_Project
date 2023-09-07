@@ -128,7 +128,11 @@ $(document).ready(function () {
         };
         // 参数初始化
         var date = []
-        var Air_Temperature = []
+        var xmd_Air_Temperature = []
+        var zfd_Air_Temperature = []
+        var bsg_Air_Temperature = []
+        var dcn_Air_Temperature = []
+        var dsn_Air_Temperature = []
         var Wind_direction = []
         var Wind_speed = []
         var Atmospheric_Pressure = []
@@ -141,27 +145,50 @@ $(document).ready(function () {
                     data: data,
                     success: function(response) {
                         if(response.status == 'success'){
-                            for(var day=1;day<=response.data.length;day++){
+                            for(var day=1;day<=response.data.xmd.length;day++){
                                 date.push(day);
-                                Air_Temperature.push(response.data[day-1].Air_Temperature)
-                                Wind_direction.push(response.data[day-1].Wind_direction)
-                                Wind_speed.push(response.data[day-1].Wind_speed)
-                                Atmospheric_Pressure.push(response.data[day-1].Atmospheric_Pressure)
-                                Sea_Temperature.push(response.data[day-1].Sea_Temperature)
-                                Wind_Wave_Height.push(response.data[day-1].Wind_Wave_Height)
-                                Wind_Wave_Period.push(response.data[day-1].Wind_Wave_Period)
+                                if(response.data.xmd[day-1].Air_Temperature >= 999){
+                                    xmd_Air_Temperature.push(0);
+                                }
+                                else{
+                                    xmd_Air_Temperature.push(response.data.xmd[day-1].Air_Temperature);
+                                }
+                                if(response.data.zfd[day-1].Air_Temperature >= 999){
+                                    zfd_Air_Temperature.push(0);
+                                }
+                                else{
+                                    zfd_Air_Temperature.push(response.data.zfd[day-1].Air_Temperature);
+                                }
+                                if(response.data.bsg[day-1].Air_Temperature >= 999){
+                                    bsg_Air_Temperature.push(0);
+                                }
+                                else{
+                                    bsg_Air_Temperature.push(response.data.bsg[day-1].Air_Temperature);
+                                }
+                                if(response.data.dcn[day-1].Air_Temperature >= 999){
+                                    dcn_Air_Temperature.push(0);
+                                }
+                                else{
+                                    dcn_Air_Temperature.push(response.data.dcn[day-1].Air_Temperature);
+                                }
+                                if(response.data.dsn[day-1].Air_Temperature >= 999){
+                                    dsn_Air_Temperature.push(0);
+                                }
+                                else{
+                                    dsn_Air_Temperature.push(response.data.dsn[day-1].Air_Temperature);
+                                }
                                 var chartDom = document.getElementById('main');
                                 var myChart = echarts.init(chartDom);
                                 var option;
                                 option = {
                                   title: {
-                                    text: selectedStation
+                                    text: 'Air_Temperature'
                                   },
                                   tooltip: {
                                     trigger: 'axis'
                                   },
                                   legend: {
-                                    data: ['Air_Temperature', 'Wind_direction', 'Wind_speed', 'Atmospheric_Pressure', 'Sea_Temperature', 'Wind_Wave_Height', 'Wind_Wave_Period']
+                                    data: ['小麦岛', '芝罘岛', '北礵岛', '大陈岛', '东山岛']
                                   },
                                   grid: {
                                     left: '3%',
@@ -184,46 +211,34 @@ $(document).ready(function () {
                                   },
                                   series: [
                                     {
-                                      name: 'Air_Temperature',
+                                      name: '小麦岛',
                                       type: 'line',
                                       stack: 'Total',
-                                      data: Air_Temperature
+                                      data: xmd_Air_Temperature
                                     },
                                     {
-                                      name: 'Wind_direction',
+                                      name: '芝罘岛',
                                       type: 'line',
                                       stack: 'Total',
-                                      data: Wind_direction
+                                      data: zfd_Air_Temperature
                                     },
                                     {
-                                      name: 'Wind_speed',
+                                      name: '北礵岛',
                                       type: 'line',
                                       stack: 'Total',
-                                      data: Wind_speed
+                                      data: bsg_Air_Temperature
                                     },
                                     {
-                                      name: 'Atmospheric_Pressure',
+                                      name: '大陈岛',
                                       type: 'line',
                                       stack: 'Total',
-                                      data: Atmospheric_Pressure
+                                      data: dcn_Air_Temperature
                                     },
                                     {
-                                      name: 'Sea_Temperature',
+                                      name: '东山岛',
                                       type: 'line',
                                       stack: 'Total',
-                                      data: Sea_Temperature
-                                    },
-                                    {
-                                      name: 'Wind_Wave_Height',
-                                      type: 'line',
-                                      stack: 'Total',
-                                      data: Wind_Wave_Height
-                                    },
-                                    {
-                                      name: 'Wind_Wave_Period',
-                                      type: 'line',
-                                      stack: 'Total',
-                                      data: Wind_Wave_Period
+                                      data: dsn_Air_Temperature
                                     }
                                   ]
                                 };
