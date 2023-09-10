@@ -127,18 +127,50 @@ $(document).ready(function () {
             date:selectedDate
         };
         // 参数初始化
+        //日期
         var date = []
+        //气温
         var xmd_Air_Temperature = []
         var zfd_Air_Temperature = []
         var bsg_Air_Temperature = []
         var dcn_Air_Temperature = []
         var dsn_Air_Temperature = []
-        var Wind_direction = []
-        var Wind_speed = []
-        var Atmospheric_Pressure = []
-        var Sea_Temperature = []
-        var Wind_Wave_Height = []
-        var Wind_Wave_Period = []
+        //风向
+        var xmd_Wind_direction = []
+        var zfd_Wind_direction = []
+        var bsg_Wind_direction = []
+        var dcn_Wind_direction = []
+        var dsn_Wind_direction = []
+        //风速
+        var xmd_Wind_speed = []
+        var zfd_Wind_speed = []
+        var bsg_Wind_speed = []
+        var dcn_Wind_speed = []
+        var dsn_Wind_speed = []
+        //大气压
+        var xmd_Atmospheric_Pressure = []
+        var zfd_Atmospheric_Pressure = []
+        var bsg_Atmospheric_Pressure = []
+        var dcn_Atmospheric_Pressure = []
+        var dsn_Atmospheric_Pressure = []
+        //水温
+        var xmd_Sea_Temperature = []
+        var zfd_Sea_Temperature = []
+        var bsg_Sea_Temperature = []
+        var dcn_Sea_Temperature = []
+        var dsn_Sea_Temperature = []
+        //风浪高度
+        var xmd_Wind_Wave_Height = []
+        var zfd_Wind_Wave_Height = []
+        var bsg_Wind_Wave_Height = []
+        var dcn_Wind_Wave_Height = []
+        var dsn_Wind_Wave_Height = []
+        //风浪周期
+        var xmd_Wind_Wave_Period = []
+        var zfd_Wind_Wave_Period = []
+        var bsg_Wind_Wave_Period = []
+        var dcn_Wind_Wave_Period = []
+        var dsn_Wind_Wave_Period = []
         $.ajax({
                     url: 'get_date_data/',
                     type: 'POST',
@@ -147,6 +179,7 @@ $(document).ready(function () {
                         if(response.status == 'success'){
                             for(var day=1;day<=response.data.xmd.length;day++){
                                 date.push(day);
+                                //气温
                                 if(response.data.xmd[day-1].Air_Temperature >= 999){
                                     xmd_Air_Temperature.push(0);
                                 }
@@ -177,10 +210,80 @@ $(document).ready(function () {
                                 else{
                                     dsn_Air_Temperature.push(response.data.dsn[day-1].Air_Temperature);
                                 }
-                                var chartDom = document.getElementById('main');
-                                var myChart = echarts.init(chartDom);
-                                var option;
-                                option = {
+                                //风向
+                                if(response.data.xmd[day-1].Wind_direction >= 999){
+                                    xmd_Wind_direction.push(0);
+                                }
+                                else{
+                                    xmd_Wind_direction.push(response.data.xmd[day-1].Wind_direction);
+                                }
+                                if(response.data.zfd[day-1].Wind_direction >= 999){
+                                    zfd_Wind_direction.push(0);
+                                }
+                                else{
+                                    zfd_Wind_direction.push(response.data.zfd[day-1].Wind_direction);
+                                }
+                                if(response.data.bsg[day-1].Wind_direction >= 999){
+                                    bsg_Wind_direction.push(0);
+                                }
+                                else{
+                                    bsg_Wind_direction.push(response.data.bsg[day-1].Wind_direction);
+                                }
+                                if(response.data.dcn[day-1].Wind_direction >= 999){
+                                    dcn_Wind_direction.push(0);
+                                }
+                                else{
+                                    dcn_Wind_direction.push(response.data.dcn[day-1].Wind_direction);
+                                }
+                                if(response.data.dsn[day-1].Wind_direction >= 999){
+                                    dsn_Wind_direction.push(0);
+                                }
+                                else{
+                                    dsn_Wind_direction.push(response.data.dsn[day-1].Wind_direction);
+                                }
+                                //风速
+                                if(response.data.xmd[day-1].Wind_speed >= 999){
+                                    xmd_Wind_speed.push(0);
+                                }
+                                else{
+                                    xmd_Wind_speed.push(response.data.xmd[day-1].Wind_speed);
+                                }
+                                if(response.data.zfd[day-1].Wind_speed >= 999){
+                                    zfd_Wind_speed.push(0);
+                                }
+                                else{
+                                    zfd_Wind_speed.push(response.data.zfd[day-1].Wind_speed);
+                                }
+                                if(response.data.bsg[day-1].Wind_speed >= 999){
+                                    bsg_Wind_speed.push(0);
+                                }
+                                else{
+                                    bsg_Wind_speed.push(response.data.bsg[day-1].Wind_speed);
+                                }
+                                if(response.data.dcn[day-1].Wind_speed >= 999){
+                                    dcn_Wind_speed.push(0);
+                                }
+                                else{
+                                    dcn_Wind_speed.push(response.data.dcn[day-1].Wind_speed);
+                                }
+                                if(response.data.dsn[day-1].Wind_speed >= 999){
+                                    dsn_Wind_speed.push(0);
+                                }
+                                else{
+                                    dsn_Wind_speed.push(response.data.dsn[day-1].Wind_speed);
+                                }
+                                //大气压
+                                xmd_Atmospheric_Pressure.push(response.data.xmd[day-1].Atmospheric_Pressure);
+                                zfd_Atmospheric_Pressure.push(response.data.zfd[day-1].Atmospheric_Pressure);
+                                bsg_Atmospheric_Pressure.push(response.data.bsg[day-1].Atmospheric_Pressure);
+                                dcn_Atmospheric_Pressure.push(response.data.dcn[day-1].Atmospheric_Pressure);
+                                dsn_Atmospheric_Pressure.push(response.data.dsn[day-1].Atmospheric_Pressure);
+                            }
+                            //气温
+                            var chartDom = document.getElementById('Air_Temperature');
+                            var Air_Temperature_Chart = echarts.init(chartDom);
+                            var option;
+                            option = {
                                   title: {
                                     text: 'Air_Temperature'
                                   },
@@ -242,11 +345,211 @@ $(document).ready(function () {
                                     }
                                   ]
                                 };
-                                option && myChart.setOption(option);
-                            }
+                            option && Air_Temperature_Chart.setOption(option);
+                            //风向
+                            var chartDom = document.getElementById('Wind_direction');
+                            var Wind_direction_Chart = echarts.init(chartDom);
+                            var option;
+                            option = {
+                                  title: {
+                                    text: 'Wind_direction'
+                                  },
+                                  tooltip: {
+                                    trigger: 'axis'
+                                  },
+                                  legend: {
+                                    data: ['小麦岛', '芝罘岛', '北礵岛', '大陈岛', '东山岛']
+                                  },
+                                  grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                  },
+                                  toolbox: {
+                                    feature: {
+                                      saveAsImage: {}
+                                    }
+                                  },
+                                  xAxis: {
+                                    type: 'category',
+                                    boundaryGap: false,
+                                    data: date
+                                  },
+                                  yAxis: {
+                                    type: 'value'
+                                  },
+                                  series: [
+                                    {
+                                      name: '小麦岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: xmd_Wind_direction
+                                    },
+                                    {
+                                      name: '芝罘岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: zfd_Wind_direction
+                                    },
+                                    {
+                                      name: '北礵岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: bsg_Wind_direction
+                                    },
+                                    {
+                                      name: '大陈岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: dcn_Wind_direction
+                                    },
+                                    {
+                                      name: '东山岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: dsn_Wind_direction
+                                    }
+                                  ]
+                                };
+                            option && Wind_direction_Chart.setOption(option);
+                            //风速
+                            var chartDom = document.getElementById('Wind_speed');
+                            var Wind_speed_Chart = echarts.init(chartDom);
+                            var option;
+                            option = {
+                                  title: {
+                                    text: 'Wind_speed'
+                                  },
+                                  tooltip: {
+                                    trigger: 'axis'
+                                  },
+                                  legend: {
+                                    data: ['小麦岛', '芝罘岛', '北礵岛', '大陈岛', '东山岛']
+                                  },
+                                  grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                  },
+                                  toolbox: {
+                                    feature: {
+                                      saveAsImage: {}
+                                    }
+                                  },
+                                  xAxis: {
+                                    type: 'category',
+                                    boundaryGap: false,
+                                    data: date
+                                  },
+                                  yAxis: {
+                                    type: 'value'
+                                  },
+                                  series: [
+                                    {
+                                      name: '小麦岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: xmd_Wind_speed
+                                    },
+                                    {
+                                      name: '芝罘岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: zfd_Wind_speed
+                                    },
+                                    {
+                                      name: '北礵岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: bsg_Wind_speed
+                                    },
+                                    {
+                                      name: '大陈岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: dcn_Wind_speed
+                                    },
+                                    {
+                                      name: '东山岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: dsn_Wind_speed
+                                    }
+                                  ]
+                                };
+                            option && Wind_speed_Chart.setOption(option);
+                            //大气压
+                            var chartDom = document.getElementById('Atmospheric_Pressure');
+                            var Atmospheric_Pressure_Chart = echarts.init(chartDom);
+                            var option;
+                            option = {
+                                  title: {
+                                    text: 'Atmospheric_Pressure'
+                                  },
+                                  tooltip: {
+                                    trigger: 'axis'
+                                  },
+                                  legend: {
+                                    data: ['小麦岛', '芝罘岛', '北礵岛', '大陈岛', '东山岛']
+                                  },
+                                  grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                  },
+                                  toolbox: {
+                                    feature: {
+                                      saveAsImage: {}
+                                    }
+                                  },
+                                  xAxis: {
+                                    type: 'category',
+                                    boundaryGap: false,
+                                    data: date
+                                  },
+                                  yAxis: {
+                                    type: 'value'
+                                  },
+                                  series: [
+                                    {
+                                      name: '小麦岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: xmd_Atmospheric_Pressure
+                                    },
+                                    {
+                                      name: '芝罘岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: zfd_Atmospheric_Pressure
+                                    },
+                                    {
+                                      name: '北礵岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: bsg_Atmospheric_Pressure
+                                    },
+                                    {
+                                      name: '大陈岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: dcn_Atmospheric_Pressure
+                                    },
+                                    {
+                                      name: '东山岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: dsn_Atmospheric_Pressure
+                                    }
+                                  ]
+                                };
+                            option && Atmospheric_Pressure_Chart.setOption(option);
                         }
                         else{
-                            console.log(response.message)
+                            console.log(response.message);
                         }
                     },
                     error: function() {
