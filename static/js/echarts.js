@@ -278,6 +278,8 @@ $(document).ready(function () {
                                 bsg_Atmospheric_Pressure.push(response.data.bsg[day-1].Atmospheric_Pressure);
                                 dcn_Atmospheric_Pressure.push(response.data.dcn[day-1].Atmospheric_Pressure);
                                 dsn_Atmospheric_Pressure.push(response.data.dsn[day-1].Atmospheric_Pressure);
+                                //水温
+
                             }
                             //气温
                             var chartDom = document.getElementById('Air_Temperature');
@@ -547,6 +549,73 @@ $(document).ready(function () {
                                   ]
                                 };
                             option && Atmospheric_Pressure_Chart.setOption(option);
+                            //水温
+                            var chartDom = document.getElementById('Sea_Temperature');
+                            var Sea_Temperature_Chart = echarts.init(chartDom);
+                            var option;
+                            option = {
+                                  title: {
+                                    text: 'Sea_Temperature'
+                                  },
+                                  tooltip: {
+                                    trigger: 'axis'
+                                  },
+                                  legend: {
+                                    data: ['小麦岛', '芝罘岛', '北礵岛', '大陈岛', '东山岛']
+                                  },
+                                  grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                  },
+                                  toolbox: {
+                                    feature: {
+                                      saveAsImage: {}
+                                    }
+                                  },
+                                  xAxis: {
+                                    type: 'category',
+                                    boundaryGap: false,
+                                    data: date
+                                  },
+                                  yAxis: {
+                                    type: 'value'
+                                  },
+                                  series: [
+                                    {
+                                      name: '小麦岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: xmd_Sea_Temperature
+                                    },
+                                    {
+                                      name: '芝罘岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: zfd_Sea_Temperature
+                                    },
+                                    {
+                                      name: '北礵岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: bsg_Sea_Temperature
+                                    },
+                                    {
+                                      name: '大陈岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: dcn_Sea_Temperature
+                                    },
+                                    {
+                                      name: '东山岛',
+                                      type: 'line',
+                                      stack: 'Total',
+                                      data: dsn_Sea_Temperature
+                                    }
+                                  ]
+                                };
+                            option && Sea_Temperature_Chart.setOption(option);
                         }
                         else{
                             console.log(response.message);

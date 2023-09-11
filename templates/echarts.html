@@ -18,10 +18,13 @@
               <li><a href="/home/edit/" class="nav-link px-2 text-white">上传数据</a></li>
               <li><a href="/home/echarts/" class="nav-link px-2 text-secondary">数据可视化</a></li>
               <li><a href="#" class="nav-link px-2 text-white">编辑数据</a></li>
-              <li><a href="#" class="nav-link px-2 text-white">Help</a></li>
+              <li><a href="/home/test/" class="nav-link px-2 text-white">测试页面</a></li>
             </ul>
 
             <div class="text-end">
+              <button class="btn btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                 数据筛选
+              </button>
               <button type="button" class="btn btn-warning" id="quit">退出登录</button>
             </div>
           </div>
@@ -29,35 +32,11 @@
     </header>
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">侧边栏</h5>
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">数据筛选</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div>
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-        </div>
-        <div class="dropdown mt-3">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-            Dropdown button
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div style="width: 1000px;height:10px;"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-3">
-          <!-- 左侧内容 -->
-          <div class="rounded d-flex flex-column flex-shrink-0 p-4 text-white bg-secondary" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-              <span class="fs-4">数据筛选</span>
-            </a>
-            <hr>
+         <hr>
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item">
                   <select class="form-select" aria-label="Default select example" id="station_select">
@@ -97,26 +76,34 @@
                 <div style="width: 100px;height:10px;"></div>
               </li>
             </ul>
-            <hr>
-            <div class="dropdown">
-              <button type="button" class="btn btn-dark" id="submit">提  交</button>
-            </div>
-        </div>
+         <hr>
+         <div class="dropdown">
+           <button type="button" class="btn btn-dark" id="submit">提  交</button>
+         </div>
+      </div>
+    </div>
+    <div style="width: 1000px;height:10px;"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+            <div id="Air_Temperature" style="width: 400px;height:300px;"></div>
         </div>
         <div class="col">
-          <div id="Air_Temperature" style="width: 400px;height:300px;"></div>
+            <div id="Wind_direction" style="width: 400px;height:300px;"></div>
         </div>
         <div class="col">
-          <div id="Wind_direction" style="width: 400px;height:300px;"></div>
+            <div id="Wind_speed" style="width: 400px;height:300px;"></div>
         </div>
       </div>
       <div class="row">
-          <div class="col-3"></div>
           <div class="col">
-             <div id="Wind_speed" style="width: 400px;height:300px;"></div>
+              <div id="Atmospheric_Pressure" style="width: 400px;height:300px;"></div>
           </div>
           <div class="col">
-             <div id="Atmospheric_Pressure" style="width: 400px;height:300px;"></div>
+                <div id="Sea_Temperature" style="width: 400px;height:300px;"></div>
+          </div>
+          <div class="col">
+
           </div>
       </div>
     </div>
@@ -124,6 +111,7 @@
     <script src="/static/js/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/echarts.js"></script>
 </body>
 </html>

@@ -13,6 +13,11 @@ from .models import DaChen
 from .models import DongShan
 
 
+@csrf_exempt
+def test_view(request):
+    return render(request, 'test.html', {})
+
+
 # Create your views here.
 @csrf_exempt
 def home_view(request):
