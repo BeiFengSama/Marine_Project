@@ -279,6 +279,36 @@ $(document).ready(function () {
                                 dcn_Atmospheric_Pressure.push(response.data.dcn[day-1].Atmospheric_Pressure);
                                 dsn_Atmospheric_Pressure.push(response.data.dsn[day-1].Atmospheric_Pressure);
                                 //水温
+                                if(response.data.xmd[day-1].Sea_Temperature >= 999){
+                                    xmd_Sea_Temperature.push(0);
+                                }
+                                else{
+                                    xmd_Sea_Temperature.push(response.data.xmd[day-1].Sea_Temperature);
+                                }
+                                if(response.data.zfd[day-1].Sea_Temperature >= 999){
+                                    zfd_Sea_Temperature.push(0);
+                                }
+                                else{
+                                    zfd_Sea_Temperature.push(response.data.zfd[day-1].Sea_Temperature);
+                                }
+                                if(response.data.bsg[day-1].Sea_Temperature >= 999){
+                                    bsg_Sea_Temperature.push(0);
+                                }
+                                else{
+                                    bsg_Sea_Temperature.push(response.data.bsg[day-1].Sea_Temperature);
+                                }
+                                if(response.data.dcn[day-1].Sea_Temperature >= 999){
+                                    dcn_Sea_Temperature.push(0);
+                                }
+                                else{
+                                    dcn_Sea_Temperature.push(response.data.dcn[day-1].Sea_Temperature);
+                                }
+                                if(response.data.dsn[day-1].Sea_Temperature >= 999){
+                                    dsn_Sea_Temperature.push(0);
+                                }
+                                else{
+                                    dsn_Sea_Temperature.push(response.data.dsn[day-1].Sea_Temperature);
+                                }
 
                             }
                             //气温
@@ -312,37 +342,40 @@ $(document).ready(function () {
                                     data: date
                                   },
                                   yAxis: {
-                                    type: 'value'
+                                    type: 'value',
+                                    max: 20,//最大值
+                                    min: 0,//最小值
+                                    interval:2//间隔
                                   },
                                   series: [
                                     {
                                       name: '小麦岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total1',
                                       data: xmd_Air_Temperature
                                     },
                                     {
                                       name: '芝罘岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total2',
                                       data: zfd_Air_Temperature
                                     },
                                     {
                                       name: '北礵岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total3',
                                       data: bsg_Air_Temperature
                                     },
                                     {
                                       name: '大陈岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total4',
                                       data: dcn_Air_Temperature
                                     },
                                     {
                                       name: '东山岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total5',
                                       data: dsn_Air_Temperature
                                     }
                                   ]
@@ -379,37 +412,40 @@ $(document).ready(function () {
                                     data: date
                                   },
                                   yAxis: {
-                                    type: 'value'
+                                    type: 'value',
+                                    max: 500,//最大值
+                                    min: 0,//最小值
+                                    interval:50//间隔
                                   },
                                   series: [
                                     {
                                       name: '小麦岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total1',
                                       data: xmd_Wind_direction
                                     },
                                     {
                                       name: '芝罘岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total2',
                                       data: zfd_Wind_direction
                                     },
                                     {
                                       name: '北礵岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total3',
                                       data: bsg_Wind_direction
                                     },
                                     {
                                       name: '大陈岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total4',
                                       data: dcn_Wind_direction
                                     },
                                     {
                                       name: '东山岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total5',
                                       data: dsn_Wind_direction
                                     }
                                   ]
@@ -446,37 +482,40 @@ $(document).ready(function () {
                                     data: date
                                   },
                                   yAxis: {
-                                    type: 'value'
+                                    type: 'value',
+                                    max: 20,//最大值
+                                    min: 0,//最小值
+                                    interval:2//间隔
                                   },
                                   series: [
                                     {
                                       name: '小麦岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total1',
                                       data: xmd_Wind_speed
                                     },
                                     {
                                       name: '芝罘岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total2',
                                       data: zfd_Wind_speed
                                     },
                                     {
                                       name: '北礵岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total3',
                                       data: bsg_Wind_speed
                                     },
                                     {
                                       name: '大陈岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total4',
                                       data: dcn_Wind_speed
                                     },
                                     {
                                       name: '东山岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total5',
                                       data: dsn_Wind_speed
                                     }
                                   ]
@@ -513,37 +552,40 @@ $(document).ready(function () {
                                     data: date
                                   },
                                   yAxis: {
-                                    type: 'value'
+                                    type: 'value',
+                                    max: 1050,//最大值
+                                    min: 1000,//最小值
+                                    interval:5//间隔
                                   },
                                   series: [
                                     {
                                       name: '小麦岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total1',
                                       data: xmd_Atmospheric_Pressure
                                     },
                                     {
                                       name: '芝罘岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total2',
                                       data: zfd_Atmospheric_Pressure
                                     },
                                     {
                                       name: '北礵岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total3',
                                       data: bsg_Atmospheric_Pressure
                                     },
                                     {
                                       name: '大陈岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total4',
                                       data: dcn_Atmospheric_Pressure
                                     },
                                     {
                                       name: '东山岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total5',
                                       data: dsn_Atmospheric_Pressure
                                     }
                                   ]
@@ -580,37 +622,40 @@ $(document).ready(function () {
                                     data: date
                                   },
                                   yAxis: {
-                                    type: 'value'
+                                    type: 'value',
+                                    max: 20,//最大值
+                                    min: 0,//最小值
+                                    interval:2//间隔
                                   },
                                   series: [
                                     {
                                       name: '小麦岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total1',
                                       data: xmd_Sea_Temperature
                                     },
                                     {
                                       name: '芝罘岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total2',
                                       data: zfd_Sea_Temperature
                                     },
                                     {
                                       name: '北礵岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total3',
                                       data: bsg_Sea_Temperature
                                     },
                                     {
                                       name: '大陈岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total4',
                                       data: dcn_Sea_Temperature
                                     },
                                     {
                                       name: '东山岛',
                                       type: 'line',
-                                      stack: 'Total',
+                                      stack: 'Total5',
                                       data: dsn_Sea_Temperature
                                     }
                                   ]
